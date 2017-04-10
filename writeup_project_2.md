@@ -13,8 +13,8 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
+[image1]: ./training_data_graph.jpg "Training Data"
+[image2]: ./sample_sign_pprocess.jpg "Preprocessing"
 [image3]: ./examples/random_noise.jpg "Random Noise"
 [image4]: ./examples/placeholder.png "Traffic Sign 1"
 [image5]: ./examples/placeholder.png "Traffic Sign 2"
@@ -28,7 +28,7 @@ The goals / steps of this project are the following:
 
 ### Data Set Summary & Exploration
 
-#### 1. Provide a basic summary of the data set and identify where in your code the summary was done. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
+#### 1.Basic summary of the data set
 
 The code for this step is contained in the second code cell of the IPython notebook / html file.  
 
@@ -39,11 +39,11 @@ I used numpy methods to calculate summary statistics of the traffic signs data s
 * The shape of a traffic sign image is 32, 32, 3 - 32x32 pixels with RGB values
 * The number of unique classes/labels in the data set is 43
 
-#### 2. Include an exploratory visualization of the dataset and identify where the code is in your code file.
+#### 2.Exploratory visualization of the dataset
 
-The code for this step is contained in the third and fourth code cell of the IPython notebook / html file.  
+The code for this step is contained in the second and third code cell of the IPython notebook / html file.  
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+Here is an exploratory visualization of the training data set. It shows the distribution of the pictures over the different labels. You can see that there is quite some difference between the 43 different labels, whcih means that some of them get trained much more often than others and the algorithm is more likely to recognize similiar images.
 
 
 
@@ -52,17 +52,19 @@ Here is an exploratory visualization of the data set. It is a bar chart showing 
 
 ### Design and Test a Model Architecture
 
-#### 1. Describe how, and identify where in your code, you preprocessed the image data. What tecniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc.
+#### 1. Preprocessing the image data
 
 The code for this step is contained in the fourth code cell of the IPython notebook.
 
-As a first step, I decided to convert the images to grayscale because ...
+As a first step, I decided to convert the images to grayscale because the LeNet algorythm was designed for black and white images (text) and a test with all of the other parameters staying the same showed an increase in accuracy.
+As a last step, I normalized the image data because this minimizes the variations in the picture and makes it easier for a CNN to optimize the weights during backpropagation.
 
-Here is an example of a traffic sign image before and after grayscaling.
+Here is an example of a traffic sign image before and after grayscaling + normalization:
+
 
 ![alt text][image2]
 
-As a last step, I normalized the image data because ...
+
 
 #### 2. Describe how, and identify where in your code, you set up training, validation and testing data. How much data was in each set? Explain what techniques were used to split the data into these sets. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, identify where in your code, and provide example images of the additional data)
 
@@ -81,23 +83,28 @@ Here is an example of an original image and an augmented image:
 The difference between the original data set and the augmented data set is the following ... 
 
 
-#### 3. Describe, and identify where in your code, what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+#### 3. The final model architecture was the LeNet architecture that was modified with a dropout function applied to the first fully connected layer
 
-The code for my final model is located in the seventh cell of the ipython notebook. 
+The code for my final model is located in the sixth cell of the ipython notebook / html file. 
 
 My final model consisted of the following layers:
 
-| Layer         		|     Description	        					| 
+| Layer         	      	|     Description	        				                 	| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
-| RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
+| Input         		      | 32x32x1 grayscaled normalized image   						 	| 
+| Convolution 5x5      	| 1x1 stride, valid padding, outputs 28x28x6   	|
+| Relu			             	 | relu function of first convolution layer						|
+| Max pooling	      	   | 2x2 stride, valid padding, outputs 14x14x6 			|
+| Convolution 5x5	      | 1x1 stride, valid padding, outputs 10x10x16   |
+| Relu                  | relu function of second convolution layer	    |
+| Max pooling				       | 2x2 stride, valid padding, outputs 5x5x16     |
+| Flatten    				       | Flatten the input of 5x5x16 to output 400     |
+| Fully connected       | input 400, output 120                         |
+| Relu       				       | relu function of first fully connected layer	 |
+| Dropout    				       | dropout function applied                      |
+|	Fully connected       |	input 120, output 84 					              						|
+| Relu       				       | relu function of second fully connected layer	|
+|	Fully connected       |	input 84, output 43  					              						|
  
 
 
@@ -146,13 +153,13 @@ The code for making predictions on my final model is located in the tenth cell o
 
 Here are the results of the prediction:
 
-| Image			        |     Prediction	        					| 
+| Image			              |     Prediction	        					                  | 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Stop Sign           		| Stop sign   								                         	| 
+| U-turn     		        	| U-turn 									                             	|
+| Yield					            | Yield										                              	|
+| 100 km/h	           		| Bumpy Road					 			                          	|
+| Slippery Road		      	| Slippery Road      				                    			|
 
 
 The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
