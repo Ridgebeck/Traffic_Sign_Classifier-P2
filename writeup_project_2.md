@@ -21,11 +21,11 @@ The goals / steps of this project are the following:
 [image6]: ./web_images/3.jpg "Traffic Sign 3"
 [image7]: ./web_images/4.jpg "Traffic Sign 4"
 [image8]: ./web_images/5.jpg "Traffic Sign 5"
-[image9]: ./predictions/bar_1.JPG "Bar Graph Image 1"
-[image10]: ./predictions/bar_2.JPG "Bar Graph Image 2"
-[image11]: ./predictions/bar_3.JPG "Bar Graph Image 3"
-[image12]: ./predictions/bar_4.JPG "Bar Graph Image 4"
-[image13]: ./predictions/bar_5.JPG "Bar Graph Image 5"
+[image9]: ./predictions/bar_1.jpg "Bar Graph Image 1"
+[image10]: ./predictions/bar_2.jpg "Bar Graph Image 2"
+[image11]: ./predictions/bar_3.jpg "Bar Graph Image 3"
+[image12]: ./predictions/bar_4.jpg "Bar Graph Image 4"
+[image13]: ./predictions/bar_5.jpg "Bar Graph Image 5"
 
 
 ---
@@ -152,7 +152,7 @@ Here are the results of the prediction:
 | 30 km/h (1)		        	| 30 km/h (1)		 		                             	|
 | Road Work (25)        | Road WOrk (25)                               	|
 | No Passing (9)	     		| No Passing (9)	 			                          	|
-| 80 km/h (5)          	| 50 km/h (2)	       				                    			|
+| 80 km/h (5)          	| 30 km/h (1)	       				                    			|
 
 
 The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. The false prediction was as expected the picture that was shot from an angle.
@@ -172,4 +172,8 @@ Here are the top 5 predictions for every image:
 ![alt text][image12]
 
 ![alt text][image13]
+
+The first picture was correctly predicted as a STOP (14) sign, but the algorithm was also thinking that it could have been a KEEP RIGHT (38). Both probabilities were pretty close with 46% and 41%. Picture 2, 3, and 4 were pretty clear with the first choice always having more than 87% and all images were predicted correctly. The last picture was predicted incorrectly (30km/h (1) insted of 80 km/h (5)) with a fairly high confidence of 79%. The second choice would have been the right one with 7%.
+
+The accuracy is lower on the images from the web as expected as the images are varying more than the ones from the original training and test set. To achieve a higher accuracy further pre-processing of the original training set could have been done, such as rotation, zoom, flipping of the images etc. to make the algorithm more robust for different inputs.
 
