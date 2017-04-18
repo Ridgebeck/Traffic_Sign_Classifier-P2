@@ -21,11 +21,11 @@ The goals / steps of this project are the following:
 [image6]: ./web_images/3.jpg "Traffic Sign 3"
 [image7]: ./web_images/4.jpg "Traffic Sign 4"
 [image8]: ./web_images/5.jpg "Traffic Sign 5"
-[image9]: ./predictions/bar_1.jpg "Bar Graph Image 1"
-[image10]: ./predictions/bar_2.jpg "Bar Graph Image 2"
-[image11]: ./predictions/bar_3.jpg "Bar Graph Image 3"
-[image12]: ./predictions/bar_4.jpg "Bar Graph Image 4"
-[image13]: ./predictions/bar_5.jpg "Bar Graph Image 5"
+[image9]: ./predictions/bar_1.JPG "Bar Graph Image 1"
+[image10]: ./predictions/bar_2.JPG "Bar Graph Image 2"
+[image11]: ./predictions/bar_3.JPG "Bar Graph Image 3"
+[image12]: ./predictions/bar_4.JPG "Bar Graph Image 4"
+[image13]: ./predictions/bar_5.JPG "Bar Graph Image 5"
 
 
 ---
